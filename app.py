@@ -7,7 +7,7 @@ model = joblib.load('random_forest_model.pkl')
 
 # ฟังก์ชันทำนายประเภทของเพนกวิน
 def predict_penguin(species_features):
-    prediction = model.predict([species_features])
+    prediction = model.predict(species_features)
     return prediction[0]
 
 # UI บน Streamlit
@@ -20,8 +20,8 @@ bill_depth = st.number_input("Bill Depth (mm)")
 flipper_length = st.number_input("Flipper Length (mm)")
 body_mass = st.number_input("Body Mass (g)")
 
-# แปลงข้อมูล input ให้เป็น array
-input_features = np.array([bill_length, bill_depth, flipper_length, body_mass])
+# แปลงข้อมูล input ให้เป็น array 2D (1, 4)
+input_features = np.array([[bill_length, bill_depth, flipper_length, body_mass]])
 
 # ปุ่มทำนาย
 if st.button("Predict"):
