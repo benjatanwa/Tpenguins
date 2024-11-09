@@ -5,10 +5,13 @@ import numpy as np
 # โหลดโมเดล Random Forest ที่บันทึกไว้
 model = joblib.load('random_forest_model.pkl')
 
+# สร้าง dictionary เพื่อแปลงจากผลลัพธ์ตัวเลขเป็นชื่อสายพันธุ์
+species_dict = {0: "Adelie", 1: "Chinstrap", 2: "Gentoo"}
+
 # ฟังก์ชันทำนายประเภทของเพนกวิน
 def predict_penguin(species_features):
     prediction = model.predict([species_features])
-    return prediction[0]
+    return species_dict[prediction[0]]  # แปลงผลลัพธ์เป็นชื่อสายพันธุ์
 
 # UI บน Streamlit
 st.title("Penguin Species Prediction")
